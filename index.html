@@ -169,10 +169,13 @@ header img{
 
   <div>
     <h1 class="text-3xl md:text-4xl font-extrabold text-white">
-      PONTIANAK <span class="text-emerald-400">2025</span>
+      PETA INTERAKTIF RT RW PONTIANAK <span class="text-emerald-400">2025</span>
     </h1>
     <p class="text-slate-400 text-sm md:text-base">
-      Distribusi RT, RW, dan Jumlah Penduduk per Kecamatan
+      Visualisasi Peta Data Kependudukan
+    </p>
+    <p class="text-slate-500 text-xs mt-1">
+      Dinas Komunikasi dan Informatika Kota Pontianak
     </p>
   </div>
 </div>
@@ -187,13 +190,13 @@ header img{
 
 <!-- SIDEBAR -->
 <aside class="space-y-4">
-  <!-- Ranking -->
+  <!-- Daftar Kecamatan -->
   <div class="glass p-5 rounded-2xl">
     <h3 class="text-sm font-bold uppercase text-emerald-400 mb-4 flex items-center gap-2">
       <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-        <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clip-rule="evenodd"/>
       </svg>
-      Peringkat Jumlah RT
+      Daftar Kecamatan
     </h3>
     <div id="rank-list" class="space-y-2"></div>
   </div>
@@ -235,11 +238,137 @@ header img{
 </aside>
 
 <!-- MAP -->
-<section class="lg:col-span-3">
+<section class="lg:col-span-3 space-y-6">
   <div id="map" class="shadow-2xl border border-slate-700"></div>
+  
+  <!-- About Section -->
+  <div class="glass p-6 rounded-2xl">
+    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+      <svg class="w-6 h-6 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+      </svg>
+      Tentang Sistem Pemetaan
+    </h3>
+    <div class="text-slate-300 space-y-4 leading-relaxed text-sm md:text-base">
+      <p>
+        <span class="font-semibold text-emerald-400">Sistem Informasi Geografis (SIG) Kota Pontianak 2025</span> merupakan platform digital interaktif yang menyajikan data distribusi Rukun Tetangga (RT), Rukun Warga (RW), dan jumlah penduduk di seluruh wilayah Kota Pontianak secara visual dan terstruktur.
+      </p>
+      <p>
+        Platform ini dikembangkan untuk memudahkan masyarakat, pemangku kepentingan, dan pemerintah daerah dalam mengakses informasi kependudukan dan administratif secara real-time. Dengan teknologi pemetaan modern berbasis web, setiap kecamatan dapat dieksplorasi dengan detail hingga ke tingkat kelurahan.
+      </p>
+      <p>
+        Fitur-fitur yang tersedia meliputi <span class="text-emerald-400 font-semibold">visualisasi peta interaktif</span> dengan kode warna berdasarkan kepadatan RT, <span class="text-emerald-400 font-semibold">marker lokasi kelurahan</span> yang dapat diklik untuk informasi detail, serta <span class="text-emerald-400 font-semibold">statistik komprehensif</span> yang mencakup total penduduk, jumlah RW, dan jumlah RT per kecamatan.
+      </p>
+      <p>
+        Data yang ditampilkan bersumber dari <span class="font-semibold">Dinas Kependudukan dan Pencatatan Sipil Kota Pontianak</span> dan diperbarui secara berkala untuk memastikan akurasi informasi. Sistem ini dirancang dengan antarmuka yang responsif, dapat diakses melalui berbagai perangkat termasuk desktop, tablet, dan smartphone.
+      </p>
+      <p class="text-emerald-400 font-semibold">
+        Manfaat Sistem: Perencanaan pembangunan wilayah yang lebih tepat sasaran, pemantauan distribusi penduduk secara real-time, kemudahan akses data administratif untuk keperluan pelayanan publik, dan transparansi informasi kependudukan untuk seluruh stakeholder.
+      </p>
+    </div>
+  </div>
 </section>
 
 </div>
+
+<!-- FOOTER -->
+<footer class="glass rounded-2xl p-8 mt-8">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6">
+    
+    <!-- Info Kontak -->
+    <div>
+      <h4 class="text-emerald-400 font-bold text-lg mb-4 flex items-center gap-2">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+        </svg>
+        Kontak Kami
+      </h4>
+      <div class="text-slate-300 text-sm space-y-2">
+        <p class="flex items-start gap-2">
+          <svg class="w-4 h-4 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+          </svg>
+          <span>Jl. Rahadi Usman No.1, Pontianak, Kalimantan Barat 78117</span>
+        </p>
+        <p class="flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+          </svg>
+          <span>(0561) 736711</span>
+        </p>
+        <p class="flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+          </svg>
+          <span>diskominfo@pontianakkota.go.id</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Tentang -->
+    <div>
+      <h4 class="text-emerald-400 font-bold text-lg mb-4 flex items-center gap-2">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+        </svg>
+        Tentang Portal
+      </h4>
+      <div class="text-slate-300 text-sm space-y-2">
+        <p>Portal Data Statistik Sektoral Kota Pontianak menyediakan akses informasi kependudukan dan administratif secara terbuka dan terintegrasi.</p>
+        <p class="text-xs text-slate-400 mt-3">
+          <span class="font-semibold text-emerald-400">Sumber Data:</span><br>
+          Dinas Kependudukan dan Pencatatan Sipil Kota Pontianak
+        </p>
+        <p class="text-xs text-slate-400">
+          <span class="font-semibold text-emerald-400">Terakhir Diperbarui:</span> Januari 2025
+        </p>
+      </div>
+    </div>
+
+    <!-- Link Terkait -->
+    <div>
+      <h4 class="text-emerald-400 font-bold text-lg mb-4 flex items-center gap-2">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z" clip-rule="evenodd"/>
+        </svg>
+        Link Terkait
+      </h4>
+      <div class="text-slate-300 text-sm space-y-2">
+        <a href="https://pontianakkota.go.id" target="_blank" class="block hover:text-emerald-400 transition-colors">
+          → Portal Resmi Pemkot Pontianak
+        </a>
+        <a href="https://diskominfo.pontianakkota.go.id" target="_blank" class="block hover:text-emerald-400 transition-colors">
+          → Website Diskominfo Pontianak
+        </a>
+        <a href="https://data.pontianakkota.go.id" target="_blank" class="block hover:text-emerald-400 transition-colors">
+          → Portal Data Kota Pontianak
+        </a>
+        <a href="https://satudata.pontianakkota.go.id" target="_blank" class="block hover:text-emerald-400 transition-colors">
+          → Satu Data Indonesia Pontianak
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Copyright -->
+  <div class="border-t border-slate-700 pt-6 mt-6">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-400">
+      <p class="flex items-center gap-2">
+        <svg class="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
+        </svg>
+        © 2025 <span class="font-semibold text-white">Dinas Komunikasi dan Informatika Kota Pontianak</span>
+      </p>
+      <p class="text-xs">
+        Didukung oleh <span class="text-emerald-400 font-semibold">Satu Data Indonesia</span>
+      </p>
+    </div>
+  </div>
+</footer>
+
 </div>
 
 <script>
@@ -339,15 +468,13 @@ document.getElementById('total-rw').textContent = totals.rw.toLocaleString('id-I
 document.getElementById('total-rt').textContent = totals.rt.toLocaleString('id-ID');
 document.getElementById('total-markers').textContent = totals.points;
 
-// ================= RANKING =================
+// ================= DAFTAR KECAMATAN =================
 const rankList = document.getElementById("rank-list");
-[...dataPontianak].sort((a,b)=>b.rt-a.rt).forEach((d,i)=>{
-  const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i+1}`;
+dataPontianak.forEach((d,i)=>{
   rankList.innerHTML += `
     <div class="flex justify-between items-center border-b border-slate-700 pb-2 hover:bg-slate-800/50 px-2 py-2 rounded cursor-pointer transition-all" onclick="focusOnDistrict('${d.name}')">
-      <span class="text-sm font-bold text-slate-400 w-8">${medal}</span>
       <span class="flex-1 px-2 text-sm">${d.name}</span>
-      <span class="font-bold text-white text-sm">${d.rt}</span>
+      <span class="font-bold text-emerald-400 text-xs">${d.rt} RT</span>
     </div>`;
 });
 
