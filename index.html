@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peta RT RW & Penduduk Kota Pontianak 2025</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+body{
+  font-family:'Inter',sans-serif;
+}
+
+#map{
+  height:75vh;
+  min-height:500px;
+  border-radius:16px;
+}
+
+.glass{
+  background:rgba(15,23,42,.9);
+  backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.1);
+}
+
+header img{
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.4));
+}
+
+/* Custom Marker Styles */
+.custom-marker {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border: 3px solid white;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,.3);
+  font-weight: 800;
+  color: white;
+  font-size: 14px;
+}
+
+.custom-marker-large {
+  width: 44px;
+  height: 44px;
+  font-size: 16px;
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+}
+
+/* Marker Cluster Styles */
+.marker-cluster {
+  background: rgba(16, 185, 129, 0.6);
+  border: 3px solid rgba(5, 150, 105, 0.8);
+}
+
+.marker-cluster div {
+  background: rgba(5, 150, 105, 0.8);
+  color: white;
+  font-weight: 700;
+}
+
+/* Animation */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.pulse-animation {
+  animation: pulse 2s infinite;
+}
+
+/* Info Card */
+.info-card {
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.95) 0%, rgba(4, 120, 87, 0.95) 100%);
+  border-radius: 12px;
+  padding: 16px;
+  color: white;
+  box-shadow: 0 8px 24px rgba(0,0,0,.3);
+}
+
+.info-card h4 {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 2px solid rgba(255,255,255,.3);
+  padding-bottom: 8px;
+}
+
+.info-card p {
+  margin: 6px 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.info-card b {
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+/* Legend */
+.legend {
+  background: rgba(15, 23, 42, 0.95);
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.1);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin: 6px 0;
+  font-size: 12px;
+}
+
+.legend-color {
+  width: 30px;
+  height: 18px;
+  margin-right: 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,.2);
+}
+
+/* Stats Badge */
+.stats-badge {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  display: inline-block;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Mobile */
+@media(max-width:768px){
+  #map{
+    height:60vh;
+    min-height:400px;
+  }
+}
+</style>
+</head>
+
+<body class="bg-slate-900 text-slate-200 p-4 md:p-6">
+
+<div class="max-w-7xl mx-auto space-y-6">
+
+<!-- HEADER -->
+<header class="flex items-center gap-4 flex-wrap justify-between">
+  <div class="flex items-center gap-4">
+  <div class="h-14 md:h-16 flex items-center">
+    <img
+      src="logo-diskominfo.png"
+      alt="Logo Diskominfo Kota Pontianak"
+      class="h-full w-auto object-contain drop-shadow-md"
+    >
+  </div>
+
+  <div>
+    <h1 class="text-3xl md:text-4xl font-extrabold text-white">
+      PONTIANAK <span class="text-emerald-400">2025</span>
+    </h1>
+    <p class="text-slate-400 text-sm md:text-base">
+      Distribusi RT, RW, dan Jumlah Penduduk per Kecamatan
+    </p>
+  </div>
+</div>
+
+  <div class="stats-badge text-sm">
+    <span id="total-markers">0</span> Titik Lokasi
+  </div>
+</header>
+
+<!-- CONTENT -->
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+
+<!-- SIDEBAR -->
+<aside class="space-y-4">
+  <!-- Ranking -->
+  <div class="glass p-5 rounded-2xl">
+    <h3 class="text-sm font-bold uppercase text-emerald-400 mb-4 flex items-center gap-2">
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+      </svg>
+      Peringkat Jumlah RT
+    </h3>
+    <div id="rank-list" class="space-y-2"></div>
+  </div>
+
+  <!-- Info Panel -->
+  <div class="glass p-5 rounded-2xl">
+    <h3 class="text-sm font-bold uppercase text-emerald-400 mb-4 flex items-center gap-2">
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+      </svg>
+      Panduan
+    </h3>
+    <div class="text-xs text-slate-300 space-y-2">
+      <p>• <span class="text-emerald-400 font-semibold">Klik wilayah</span> untuk melihat detail dan titik lokasi</p>
+      <p>• <span class="text-emerald-400 font-semibold">Hover</span> untuk highlight wilayah</p>
+      <p>• <span class="text-emerald-400 font-semibold">Klik marker</span> untuk info detail</p>
+      <p>• Marker akan muncul otomatis saat klik wilayah</p>
+    </div>
+  </div>
+
+  <!-- Statistics -->
+  <div class="glass p-5 rounded-2xl">
+    <h3 class="text-sm font-bold uppercase text-emerald-400 mb-4">Total Kota</h3>
+    <div class="space-y-3">
+      <div>
+        <div class="text-xs text-slate-400 mb-1">Total Penduduk</div>
+        <div class="text-2xl font-bold text-white" id="total-penduduk">0</div>
+      </div>
+      <div>
+        <div class="text-xs text-slate-400 mb-1">Total RW</div>
+        <div class="text-2xl font-bold text-emerald-400" id="total-rw">0</div>
+      </div>
+      <div>
+        <div class="text-xs text-slate-400 mb-1">Total RT</div>
+        <div class="text-2xl font-bold text-emerald-400" id="total-rt">0</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- MAP -->
+<section class="lg:col-span-3">
+  <div id="map" class="shadow-2xl border border-slate-700"></div>
+</section>
+
+</div>
+</div>
+
+<script>
+// ================= DATA RESMI KOTA PONTIANAK =================
+const dataPontianak = [
+  {
+    name: "Pontianak Barat",
+    rt: 561,
+    rw: 105,
+    penduduk: 156782,
+    center: [-0.0347, 109.3113],
+    points: [
+      { name: "Kelurahan Sungai Jawi Dalam", lat: -0.0280, lng: 109.3050 },
+      { name: "Kelurahan Sungai Jawi Luar", lat: -0.0320, lng: 109.3100 },
+      { name: "Kelurahan Sungai Belitung Darat", lat: -0.0380, lng: 109.3080 },
+      { name: "Kelurahan Sungai Belitung Laut", lat: -0.0420, lng: 109.3140 },
+      { name: "Kelurahan Pal Lima", lat: -0.0360, lng: 109.3180 }
+    ]
+  },
+  {
+    name: "Pontianak Kota",
+    rt: 520,
+    rw: 121,
+    penduduk: 32580,
+    center: [-0.0263, 109.3425],
+    points: [
+      { name: "Kelurahan Tengah", lat: -0.0240, lng: 109.3400 },
+      { name: "Kelurahan Darat Sekip", lat: -0.0270, lng: 109.3450 },
+      { name: "Kelurahan Sungai Bangkong", lat: -0.0290, lng: 109.3380 },
+      { name: "Kelurahan Mariana", lat: -0.0250, lng: 109.3480 }
+    ]
+  },
+  {
+    name: "Pontianak Selatan",
+    rt: 413,
+    rw: 92,
+    penduduk: 68234,
+    center: [-0.0500, 109.3350],
+    points: [
+      { name: "Kelurahan Akcaya", lat: -0.0480, lng: 109.3320 },
+      { name: "Kelurahan Bangka Belitung Darat", lat: -0.0520, lng: 109.3380 },
+      { name: "Kelurahan Bangka Belitung Laut", lat: -0.0540, lng: 109.3420 },
+      { name: "Kelurahan Parit Tokaya", lat: -0.0460, lng: 109.3280 }
+    ]
+  },
+  {
+    name: "Pontianak Tenggara",
+    rt: 190,
+    rw: 47,
+    penduduk: 180288,
+    center: [-0.0100, 109.3650],
+    points: [
+      { name: "Kelurahan Bansir Laut", lat: -0.0080, lng: 109.3620 },
+      { name: "Kelurahan Bansir Darat", lat: -0.0120, lng: 109.3680 },
+      { name: "Kelurahan Parit Mayor", lat: -0.0140, lng: 109.3640 }
+    ]
+  },
+  {
+    name: "Pontianak Timur",
+    rt: 421,
+    rw: 86,
+    penduduk: 92345,
+    center: [-0.0150, 109.3550],
+    points: [
+      { name: "Kelurahan Saigon", lat: -0.0130, lng: 109.3520 },
+      { name: "Kelurahan Tanjung Hilir", lat: -0.0170, lng: 109.3580 },
+      { name: "Kelurahan Tanjung Hulu", lat: -0.0180, lng: 109.3600 },
+      { name: "Kelurahan Banjar Serasan", lat: -0.0120, lng: 109.3490 }
+    ]
+  },
+  {
+    name: "Pontianak Utara",
+    rt: 573,
+    rw: 135,
+    penduduk: 128456,
+    center: [0.0050, 109.3350],
+    points: [
+      { name: "Kelurahan Siantan Hilir", lat: 0.0030, lng: 109.3320 },
+      { name: "Kelurahan Siantan Hulu", lat: 0.0070, lng: 109.3380 },
+      { name: "Kelurahan Siantan Tengah", lat: 0.0050, lng: 109.3400 },
+      { name: "Kelurahan Batulayang", lat: 0.0090, lng: 109.3340 },
+      { name: "Kelurahan Batu Layang", lat: 0.0020, lng: 109.3280 }
+    ]
+  }
+];
+
+// ================= CALCULATE TOTALS =================
+const totals = dataPontianak.reduce((acc, d) => ({
+  penduduk: acc.penduduk + d.penduduk,
+  rw: acc.rw + d.rw,
+  rt: acc.rt + d.rt,
+  points: acc.points + d.points.length
+}), { penduduk: 0, rw: 0, rt: 0, points: 0 });
+
+document.getElementById('total-penduduk').textContent = totals.penduduk.toLocaleString('id-ID');
+document.getElementById('total-rw').textContent = totals.rw.toLocaleString('id-ID');
+document.getElementById('total-rt').textContent = totals.rt.toLocaleString('id-ID');
+document.getElementById('total-markers').textContent = totals.points;
+
+// ================= RANKING =================
+const rankList = document.getElementById("rank-list");
+[...dataPontianak].sort((a,b)=>b.rt-a.rt).forEach((d,i)=>{
+  const medal = i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : `${i+1}`;
+  rankList.innerHTML += `
+    <div class="flex justify-between items-center border-b border-slate-700 pb-2 hover:bg-slate-800/50 px-2 py-2 rounded cursor-pointer transition-all" onclick="focusOnDistrict('${d.name}')">
+      <span class="text-sm font-bold text-slate-400 w-8">${medal}</span>
+      <span class="flex-1 px-2 text-sm">${d.name}</span>
+      <span class="font-bold text-white text-sm">${d.rt}</span>
+    </div>`;
+});
+
+// ================= MAP INITIALIZATION =================
+const map = L.map("map").setView([-0.02,109.34],12);
+
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  attribution: "&copy; OpenStreetMap contributors",
+  maxZoom: 19
+}).addTo(map);
+
+// ================= COLOR SCALE =================
+function getColor(rt){
+  return rt > 570 ? "#064e3b" :
+         rt > 550 ? "#065f46" :
+         rt >= 500 ? "#059669" :
+         rt >= 400 ? "#10b981" :
+         "#34d399";
+}
+
+// ================= MARKER CLUSTER GROUP =================
+let markerClusters = {};
+let currentGeoJsonLayer = null;
+
+// ================= CREATE CUSTOM MARKER =================
+function createCustomMarker(point, districtName, districtData) {
+  const isLarge = districtData.rt > 500;
+  const icon = L.divIcon({
+    className: 'custom-div-icon',
+    html: `<div class="custom-marker ${isLarge ? 'custom-marker-large' : ''} pulse-animation">
+             <svg class="w-4 h-4" fill="white" viewBox="0 0 20 20">
+               <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+             </svg>
+           </div>`,
+    iconSize: [isLarge ? 44 : 36, isLarge ? 44 : 36],
+    iconAnchor: [isLarge ? 22 : 18, isLarge ? 44 : 36]
+  });
+
+  const marker = L.marker([point.lat, point.lng], { icon });
+  
+  marker.bindPopup(`
+    <div class="info-card" style="min-width: 220px;">
+      <h4>${point.name}</h4>
+      <p>Kecamatan: <b>${districtName}</b></p>
+      <p>Total RT: <b>${districtData.rt}</b></p>
+      <p>Total RW: <b>${districtData.rw}</b></p>
+      <p>Penduduk: <b>${districtData.penduduk.toLocaleString('id-ID')}</b></p>
+    </div>
+  `, { maxWidth: 300 });
+
+  return marker;
+}
+
+// ================= LOAD GEOJSON =================
+fetch("https://raw.githubusercontent.com/anshori/geojson-indonesia/master/kecamatan/6171.json")
+.then(r=>r.json())
+.then(geo=>{
+  currentGeoJsonLayer = L.geoJson(geo,{
+    style: f => {
+      const d = dataPontianak.find(
+        x => x.name.toUpperCase() === f.properties.name.toUpperCase()
+      );
+      return {
+        fillColor: d ? getColor(d.rt) : "#e5e7eb",
+        weight: 2,
+        color: "#1e293b",
+        fillOpacity: 0.7
+      };
+    },
+    onEachFeature: (f, l) => {
+      const d = dataPontianak.find(
+        x => x.name.toUpperCase() === f.properties.name.toUpperCase()
+      );
+
+      if (!d) return;
+
+      // Popup untuk polygon
+      l.bindPopup(`
+        <div class="info-card">
+          <h4>${f.properties.name}</h4>
+          <p>Penduduk: <b>${d.penduduk.toLocaleString("id-ID")}</b></p>
+          <p>Jumlah RW: <b>${d.rw}</b></p>
+          <p>Jumlah RT: <b>${d.rt}</b></p>
+          <p style="margin-top: 12px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,.3); font-size: 12px; color: rgba(255,255,255,.8);">
+            <svg class="w-4 h-4 inline" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+              <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+            </svg>
+            Klik wilayah untuk melihat titik lokasi
+          </p>
+        </div>
+      `);
+
+      // Hover effect
+      l.on({
+        mouseover: e => {
+          e.target.setStyle({
+            weight: 4,
+            color: "#ffffff",
+            fillOpacity: 0.9
+          });
+        },
+        mouseout: e => {
+          currentGeoJsonLayer.resetStyle(e.target);
+        },
+        click: e => {
+          showDistrictMarkers(d, f.properties.name);
+          map.fitBounds(e.target.getBounds(), { padding: [50, 50] });
+        }
+      });
+    }
+  }).addTo(map);
+
+  map.fitBounds(currentGeoJsonLayer.getBounds(), { padding: [20, 20] });
+});
+
+// ================= SHOW DISTRICT MARKERS =================
+function showDistrictMarkers(districtData, districtName) {
+  // Remove all existing markers
+  Object.values(markerClusters).forEach(cluster => map.removeLayer(cluster));
+  markerClusters = {};
+
+  // Create new cluster for this district
+  const cluster = L.markerClusterGroup({
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: true,
+    zoomToBoundsOnClick: true,
+    maxClusterRadius: 60
+  });
+
+  districtData.points.forEach(point => {
+    const marker = createCustomMarker(point, districtName, districtData);
+    cluster.addLayer(marker);
+  });
+
+  markerClusters[districtName] = cluster;
+  map.addLayer(cluster);
+
+  // Show notification
+  const notification = L.control({ position: 'topright' });
+  notification.onAdd = function() {
+    const div = L.DomUtil.create('div', 'glass');
+    div.style.padding = '12px 20px';
+    div.style.borderRadius = '8px';
+    div.innerHTML = `
+      <div style="color: #10b981; font-weight: 700; font-size: 14px;">
+        ✓ ${districtData.points.length} titik lokasi ditampilkan
+      </div>
+      <div style="color: #94a3b8; font-size: 12px; margin-top: 4px;">
+        ${districtName}
+      </div>
+    `;
+    setTimeout(() => map.removeControl(notification), 3000);
+    return div;
+  };
+  notification.addTo(map);
+}
+
+// ================= FOCUS ON DISTRICT =================
+function focusOnDistrict(districtName) {
+  const district = dataPontianak.find(d => d.name === districtName);
+  if (!district) return;
+
+  map.setView(district.center, 14);
+  showDistrictMarkers(district, districtName);
+}
+
+// ================= MOBILE OPTIMIZATION =================
+if (window.innerWidth < 768) {
+  map.zoomControl.setPosition('bottomleft');
+}
+</script>
+
+</body>
+</html>
