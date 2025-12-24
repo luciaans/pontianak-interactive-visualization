@@ -360,6 +360,22 @@
             </div>
           </div>
         </div>
+
+        <!-- Berita Terkini -->
+        <div class="glass p-5 rounded-2xl">
+          <h3 class="text-sm font-bold uppercase text-emerald-400 mb-4 flex items-center gap-2">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"/>
+              <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"/>
+            </svg>
+            Berita Terkini
+          </h3>
+          <div id="news-container" class="space-y-3">
+            <div class="text-center text-slate-400 text-xs py-4">
+              <div class="animate-pulse">Memuat berita...</div>
+            </div>
+          </div>
+        </div>
       </aside>
 
       <!-- MAP -->
@@ -559,80 +575,84 @@
         penduduk: 156782,
         center: [-0.0347, 109.3113],
         points: [
+          { name: "Kelurahan Pal Lima", lat: -0.0360, lng: 109.3180, rt: 118, rw: 22, penduduk: 34130 },
+          { name: "Kelurahan Sungai Beliung", lat: -0.0380, lng: 109.3080, rt: 102, rw: 19, penduduk: 28620 },
           { name: "Kelurahan Sungai Jawi Dalam", lat: -0.0280, lng: 109.3050, rt: 125, rw: 24, penduduk: 35240 },
-          { name: "Kelurahan Sungai Jawi Luar", lat: -0.0320, lng: 109.3100, rt: 118, rw: 22, penduduk: 31450 },
-          { name: "Kelurahan Sungai Belitung Darat", lat: -0.0380, lng: 109.3080, rt: 102, rw: 19, penduduk: 28620 },
-          { name: "Kelurahan Sungai Belitung Laut", lat: -0.0420, lng: 109.3140, rt: 98, rw: 18, penduduk: 27342 },
-          { name: "Kelurahan Pal Lima", lat: -0.0360, lng: 109.3180, rt: 118, rw: 22, penduduk: 34130 }
+          { name: "Kelurahan Sungai Jawi Luar", lat: -0.0320, lng: 109.3100, rt: 118, rw: 22, penduduk: 31450 }
         ]
       },
       {
         name: "Pontianak Kota",
-        rt: 520,
-        rw: 121,
-        penduduk: 32580,
+        rt: 620,
+        rw: 145,
+        penduduk: 33500,
         center: [-0.0263, 109.3425],
         points: [
-          { name: "Kelurahan Tengah", lat: -0.0240, lng: 109.3400, rt: 142, rw: 32, penduduk: 8965 },
           { name: "Kelurahan Darat Sekip", lat: -0.0270, lng: 109.3450, rt: 135, rw: 31, penduduk: 8420 },
+          { name: "Kelurahan Mariana", lat: -0.0250, lng: 109.3480, rt: 115, rw: 29, penduduk: 7360 },
           { name: "Kelurahan Sungai Bangkong", lat: -0.0290, lng: 109.3380, rt: 128, rw: 29, penduduk: 7835 },
-          { name: "Kelurahan Mariana", lat: -0.0250, lng: 109.3480, rt: 115, rw: 29, penduduk: 7360 }
+          { name: "Kelurahan Sungai Jawi", lat: -0.0260, lng: 109.3370, rt: 100, rw: 24, penduduk: 6500 },
+          { name: "Kelurahan Tengah", lat: -0.0240, lng: 109.3400, rt: 142, rw: 32, penduduk: 8965 }
         ]
       },
       {
         name: "Pontianak Selatan",
-        rt: 413,
-        rw: 92,
-        penduduk: 68234,
+        rt: 556,
+        rw: 122,
+        penduduk: 69800,
         center: [-0.0500, 109.3350],
         points: [
           { name: "Kelurahan Akcaya", lat: -0.0480, lng: 109.3320, rt: 108, rw: 24, penduduk: 18240 },
-          { name: "Kelurahan Bangka Belitung Darat", lat: -0.0520, lng: 109.3380, rt: 96, rw: 22, penduduk: 16890 },
-          { name: "Kelurahan Bangka Belitung Laut", lat: -0.0540, lng: 109.3420, rt: 112, rw: 25, penduduk: 19356 },
-          { name: "Kelurahan Parit Tokaya", lat: -0.0460, lng: 109.3280, rt: 97, rw: 21, penduduk: 13748 }
+          { name: "Kelurahan Benuamelayu Darat", lat: -0.0510, lng: 109.3300, rt: 85, rw: 19, penduduk: 14250 },
+          { name: "Kelurahan Benuamelayu Laut", lat: -0.0530, lng: 109.3340, rt: 90, rw: 20, penduduk: 15100 },
+          { name: "Kelurahan Kotabaru", lat: -0.0470, lng: 109.3390, rt: 78, rw: 17, penduduk: 12980 },
+          { name: "Kelurahan Parittokaya", lat: -0.0490, lng: 109.3250, rt: 95, rw: 22, penduduk: 15920 }
         ]
       },
       {
         name: "Pontianak Tenggara",
         rt: 190,
         rw: 47,
-        penduduk: 180288,
+        penduduk: 184500,
         center: [-0.0100, 109.3650],
         points: [
-          { name: "Kelurahan Bansir Laut", lat: -0.0080, lng: 109.3620, rt: 68, rw: 17, penduduk: 64820 },
-          { name: "Kelurahan Bansir Darat", lat: -0.0120, lng: 109.3680, rt: 72, rw: 18, penduduk: 68540 },
-          { name: "Kelurahan Parit Mayor", lat: -0.0140, lng: 109.3640, rt: 50, rw: 12, penduduk: 46928 }
+          { name: "Kelurahan Bangka Belitung Darat", lat: -0.0095, lng: 109.3600, rt: 48, rw: 12, penduduk: 45000 },
+          { name: "Kelurahan Bangka Belitung Laut", lat: -0.0105, lng: 109.3700, rt: 52, rw: 13, penduduk: 48500 },
+          { name: "Kelurahan Bansir Darat", lat: -0.0120, lng: 109.3680, rt: 45, rw: 11, penduduk: 43394 },
+          { name: "Kelurahan Bansir Laut", lat: -0.0080, lng: 109.3620, rt: 45, rw: 11, penduduk: 43394 }
         ]
       },
       {
         name: "Pontianak Timur",
         rt: 421,
         rw: 86,
-        penduduk: 92345,
+        penduduk: 110627,
         center: [-0.0150, 109.3550],
         points: [
-          { name: "Kelurahan Saigon", lat: -0.0130, lng: 109.3520, rt: 115, rw: 24, penduduk: 25680 },
-          { name: "Kelurahan Tanjung Hilir", lat: -0.0170, lng: 109.3580, rt: 98, rw: 20, penduduk: 21540 },
-          { name: "Kelurahan Tanjung Hulu", lat: -0.0180, lng: 109.3600, rt: 105, rw: 21, penduduk: 23285 },
-          { name: "Kelurahan Banjar Serasan", lat: -0.0120, lng: 109.3490, rt: 103, rw: 21, penduduk: 21840 }
+          { name: "Kelurahan Banjar Serasan", lat: -0.0120, lng: 109.3490, rt: 60, rw: 12, penduduk: 13200 },
+          { name: "Kelurahan Dalambugis", lat: -0.0160, lng: 109.3530, rt: 58, rw: 12, penduduk: 12850 },
+          { name: "Kelurahan Paritmayor", lat: -0.0145, lng: 109.3570, rt: 62, rw: 13, penduduk: 13500 },
+          { name: "Kelurahan Saigon", lat: -0.0130, lng: 109.3520, rt: 64, rw: 13, penduduk: 14120 },
+          { name: "Kelurahan Tambelansampit", lat: -0.0155, lng: 109.3600, rt: 55, rw: 11, penduduk: 12100 },
+          { name: "Kelurahan Tanjunghulu", lat: -0.0175, lng: 109.3590, rt: 61, rw: 12, penduduk: 13275 },
+          { name: "Kelurahan Tanjunghlir", lat: -0.0185, lng: 109.3610, rt: 61, rw: 13, penduduk: 13300 }
         ]
       },
       {
         name: "Pontianak Utara",
         rt: 573,
         rw: 135,
-        penduduk: 128456,
+        penduduk: 132000,
         center: [0.0050, 109.3350],
         points: [
-          { name: "Kelurahan Siantan Hilir", lat: 0.0030, lng: 109.3320, rt: 122, rw: 29, penduduk: 27840 },
-          { name: "Kelurahan Siantan Hulu", lat: 0.0070, lng: 109.3380, rt: 118, rw: 28, penduduk: 26320 },
-          { name: "Kelurahan Siantan Tengah", lat: 0.0050, lng: 109.3400, rt: 110, rw: 26, penduduk: 24560 },
-          { name: "Kelurahan Batulayang", lat: 0.0090, lng: 109.3340, rt: 115, rw: 27, penduduk: 25840 },
-          { name: "Kelurahan Batu Layang", lat: 0.0020, lng: 109.3280, rt: 108, rw: 25, penduduk: 23896 }
+          { name: "Kelurahan Batulayang", lat: 0.0090, lng: 109.3340, rt: 143, rw: 34, penduduk: 32114 },
+          { name: "Kelurahan Siantan Hilir", lat: 0.0030, lng: 109.3320, rt: 144, rw: 34, penduduk: 32336 },
+          { name: "Kelurahan Siantan Hulu", lat: 0.0070, lng: 109.3380, rt: 142, rw: 33, penduduk: 31892 },
+          { name: "Kelurahan Siantan Tengah", lat: 0.0050, lng: 109.3350, rt: 144, rw: 34, penduduk: 32114 }
         ]
       }
     ];
-
+    
     // ================= CALCULATE TOTALS =================
     const totals = dataPontianak.reduce((acc, d) => ({
       penduduk: acc.penduduk + d.penduduk,
