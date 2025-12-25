@@ -365,8 +365,10 @@
         <div class="glass p-5 rounded-2xl">
           <h3 class="text-sm font-bold uppercase text-emerald-400 mb-4 flex items-center gap-2">
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"/>
-              <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"/>
+              <path fill-rule="evenodd"
+                d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+                clip-rule="evenodd" />
+              <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
             </svg>
             Berita Terkini
           </h3>
@@ -557,7 +559,11 @@
             © 2025 <span class="font-bold text-white">Dinas Komunikasi dan Informatika Kota Pontianak</span>
           </p>
           <p class="text-xs text-slate-400">
-            Didukung oleh <span class="text-emerald-400 font-semibold">Satu Data Indonesia</span>
+            Developed by
+            <a href="https://github.com/luciaans?tab=overview&from=2025-12-01&to=2025-12-24" target="_blank"
+              rel="noopener noreferrer" class="text-emerald-400 font-semibold hover:underline">
+              luciaans
+            </a>
           </p>
         </div>
       </div>
@@ -652,7 +658,7 @@
         ]
       }
     ];
-    
+
     // ================= CALCULATE TOTALS =================
     const totals = dataPontianak.reduce((acc, d) => ({
       penduduk: acc.penduduk + d.penduduk,
