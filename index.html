@@ -141,6 +141,22 @@
       transform: translateX(4px);
     }
 
+    /* News Card Styles */
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    #news-container a {
+      border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+    }
+
+    #news-container a:last-child {
+      border-bottom: none;
+    }
+
     /* ================= MOBILE OPTIMIZATIONS ================= */
     @media (max-width: 768px) {
       body {
@@ -428,9 +444,10 @@
             </p>
 
             <p class="text-emerald-400 font-semibold">
-              Manfaat visualisasi ini antara lain meningkatkan aksesibilitas data kependudukan, mendukung transparansi
-              informasi,
-              serta membantu proses pengambilan keputusan berbasis data di lingkungan Pemerintah Kota Pontianak.
+              Manfaat visualisasi ini antara lain meningkatkan aksesibilitas data kependudukan secara menyeluruh,
+              mendukung transparansi informasi publik yang terbuka, serta membantu mempercepat proses pengambilan
+              keputusan berbasis data yang akurat dan terpercaya di lingkungan Pemerintah Kota Pontianak untuk
+              pembangunan yang lebih baik.
             </p>
           </div>
         </div>
@@ -572,6 +589,70 @@
   </div>
 
   <script>
+    // ================= FETCH BERITA INDONESIA =================
+    async function loadNews() {
+      const newsContainer = document.getElementById('news-container');
+
+      try {
+        const rssResponse = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://www.antaranews.com/rss/terkini');
+        const rssData = await rssResponse.json();
+
+        if (rssData.items && rssData.items.length > 0) {
+          // Ubah dari slice(0, 5) menjadi slice(0, 2) untuk menampilkan 2 berita saja
+          newsContainer.innerHTML = rssData.items.slice(0, 2).map(item => {
+            const imgMatch = item.description?.match(/<img[^>]+src="([^">]+)"/);
+            const imgSrc = imgMatch ? imgMatch[1] : null;
+
+            return `
+          <a href="${item.link}" target="_blank" rel="noopener noreferrer" 
+             class="block hover:bg-slate-800/50 p-3 rounded-lg transition-all group">
+            <div class="flex gap-3">
+              ${imgSrc ? `
+                <img src="${imgSrc}" 
+                     alt="${item.title}"
+                     class="w-20 h-20 object-cover rounded-lg flex-shrink-0"
+                     onerror="this.style.display='none'">
+              ` : ''}
+              <div class="flex-1 min-w-0">
+                <h5 class="text-sm font-semibold text-white group-hover:text-emerald-400 transition-colors line-clamp-2 mb-1">
+                  ${item.title}
+                </h5>
+                <p class="text-xs text-slate-400">
+                  ${new Date(item.pubDate).toLocaleDateString('id-ID', {
+              day: 'numeric',
+              month: 'short',
+              year: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit'
+            })}
+                </p>
+              </div>
+            </div>
+          </a>
+        `;
+          }).join('');
+        } else {
+          throw new Error('RSS gagal');
+        }
+      } catch (rssError) {
+        newsContainer.innerHTML = `
+      <div class="text-center text-slate-400 text-xs py-4">
+        <p>Tidak dapat memuat berita</p>
+        <p class="text-xs mt-2">Coba muat ulang halaman</p>
+      </div>
+    `;
+      }
+    }
+
+    // Load berita pertama kali saat halaman dibuka
+    loadNews();
+
+    // AUTO-REFRESH BERITA SETIAP 10 DETIK
+    setInterval(() => {
+      loadNews();
+      console.log('Berita di-refresh:', new Date().toLocaleTimeString('id-ID'));
+    }, 10000); // 10 detik = 10000 ms
+
     // ================= DATA RESMI KOTA PONTIANAK =================
     const dataPontianak = [
       {
@@ -857,6 +938,8 @@
     if (window.innerWidth < 768) {
       map.zoomControl.setPosition('bottomleft');
     }
+
+
   </script>
 
 
