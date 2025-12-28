@@ -17,13 +17,13 @@ const dataPontianak = [
     rt: 520,
     rw: 121,
     penduduk: 33500,
-    center: [-0.0263, 109.3425],
+    center: [-0.0296, 109.3164],
     points: [
-      { name: "Kelurahan Darat Sekip", lat: -0.0270, lng: 109.3450, rt: 135, rw: 31, penduduk: 8420 },
-      { name: "Kelurahan Mariana", lat: -0.0250, lng: 109.3480, rt: 115, rw: 29, penduduk: 7360 },
-      { name: "Kelurahan Sungai Bangkong", lat: -0.0290, lng: 109.3380, rt: 128, rw: 29, penduduk: 7835 },
-      { name: "Kelurahan Sungai Jawi", lat: -0.0260, lng: 109.3370, rt: 100, rw: 24, penduduk: 6500 },
-      { name: "Kelurahan Tengah", lat: -0.0240, lng: 109.3400, rt: 142, rw: 32, penduduk: 8965 }
+      { name: "Kelurahan Darat Sekip", lat: -0.0332, lng: 109.3314, rt: 135, rw: 31, penduduk: 8420 },
+      { name: "Kelurahan Mariana", lat:  -0.0203, lng: 109.3314, rt: 115, rw: 29, penduduk: 7360 },
+      { name: "Kelurahan Sungai Bangkong", lat: -0.0330, lng: 109.3200, rt: 128, rw: 29, penduduk: 7835 },
+      { name: "Kelurahan Sungai Jawi", lat: -0.0381, lng: 109.3012, rt: 100, rw: 24, penduduk: 6500 },
+      { name: "Kelurahan Tengah", lat: -0.0241, lng: 109.3142, rt: 142, rw: 32, penduduk: 8965 }
     ]
   },
   {
