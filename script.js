@@ -10,7 +10,6 @@ const dataPontianak = [
       { name: "Kelurahan Sungai Beliung", lat: -0.0091, lng: 109.2883, rt: 102, rw: 19, penduduk: 28620 },
       { name: "Kelurahan Sungai Jawi Dalam", lat: -0.0191, lng: 109.3046, rt: 125, rw: 24, penduduk: 35240 },
       { name: "Kelurahan Sungai Jawi Luar", lat: -0.0099, lng: 109.3112, rt: 118, rw: 22, penduduk: 31450 },
-      { name: "Kelurahan Tengah", lat: -0.0150, lng: 109.3050, rt: 98, rw: 18, penduduk: 27342 }
     ]
   },
   {
