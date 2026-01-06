@@ -80,7 +80,18 @@
   <!-- Navigation -->
   <nav class="glass fixed top-0 left-0 right-0 z-50 fade-in border-b border-slate-700/50">
     <div class="max-w-7xl mx-auto px-4 md:px-6 py-4">
-      <div class="flex items-center justify-center">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <img src="/img/logo-diskominfo.png" alt="Logo" 
+            class="h-11 w-auto object-contain logo-glow"
+            onerror="this.src='https://via.placeholder.com/44x44/10b981/ffffff?text=DK'">
+          <div>
+            <span class="font-bold text-white text-sm md:text-base">PONIVA | Pontianak Interactive
+                            Visualization</span>
+            <p class="text-xs text-slate-400 hidden md:block">Dinas Komunikasi dan Informatika Kota
+                            Pontianak</p>
+          </div>
+        </div>
         <div class="flex gap-8 text-sm font-semibold">
           <a href="home.html" class="nav-link text-slate-300 hover:text-emerald-400">Home</a>
           <a href="dashboard.html" class="nav-link text-slate-300 hover:text-emerald-400">Dashboard</a>
@@ -90,25 +101,23 @@
     </div>
   </nav>
 
-  <div class="max-w-7xl mx-auto space-y-6 pt-24">
-    <header class="flex items-center gap-4 flex-wrap justify-between fade-in">
+  <div class="max-w-7xl mx-auto space-y-6 pt-20">
+    <header class="flex items-center gap-4 flex-wrap justify-between">
       <div class="flex items-center gap-4">
-        <div class="h-12 md:h-14 flex items-center">
-          <img src="/img/logo-diskominfo.png" alt="Logo Diskominfo Kota Pontianak"
-            class="h-full w-auto object-contain drop-shadow-md">
+        <div class="h-14 md:h-16 flex items-center">
         </div>
 
         <div>
-          <h1 class="text-2xl md:text-3xl font-extrabold text-white">
+          <h1 class="text-3xl md:text-3xl font-extrabold text-white">
             DATA PETA KEPENDUDUKAN <span class="text-emerald-400">KOTA PONTIANAK</span>
           </h1>
-          <p class="text-slate-400 text-xs md:text-sm">
+          <p class="text-slate-400 text-sm md:text-base">
             Dinas Komunikasi dan Informatika Kota Pontianak
           </p>
         </div>
       </div>
 
-      <div class="stats-badge text-sm font-semibold">
+      <div class="stats-badge text-sm">
         <span id="total-markers">0</span> Lokasi Terpetakan
       </div>
     </header>
