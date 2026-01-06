@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="img/logo-diskominfo.png">
-    <title>Home - Peta Kependudukan Kota Pontianak</title>
+    <title>Beranda - PONIVA | Pontianak Interactive Visualization</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');
@@ -507,11 +507,9 @@
                         </a>
                     </div>
                 </div>
-
-                <!-- Right Content - City Image with Stats -->
+                <!-- Right Image -->
                 <div class="fade-in-up" style="animation-delay: 0.2s">
                     <div class="city-image-container" style="height: 550px;">
-                        <!-- Ganti URL ini dengan foto Kota Pontianak yang sebenarnya -->
                         <img src="img/kota-pontianak.jpg" alt="Kota Pontianak"
                             onerror="this.src='https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&q=80'">
 
@@ -561,7 +559,7 @@
             </div>
         </div>
     </section>
-
+    <br>
     <!-- Info Section -->
     <section class="py-20 px-4 md:px-6">
         <div class="max-w-7xl mx-auto">
@@ -866,7 +864,6 @@
     </footer>
 
     <script>
-        // Mobile menu toggle functionality
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const navOverlay = document.getElementById('nav-overlay');
@@ -897,7 +894,6 @@
             document.body.style.overflow = '';
         }
 
-        // Close menu when clicking on mobile menu items
         document.querySelectorAll('.mobile-menu-item').forEach(item => {
             item.addEventListener('click', closeMobileMenu);
         });
@@ -909,7 +905,6 @@
             }
         });
 
-        // Prevent body scroll when menu is open
         document.addEventListener('touchmove', function (e) {
             if (mobileMenu.classList.contains('open') && !mobileMenu.contains(e.target)) {
                 e.preventDefault();

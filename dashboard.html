@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="img/logo-diskominfo.png">
-    <title>Dashboard - Peta Kependudukan Kota Pontianak</title>
+    <title>Dashboard - PONIVA | Pontianak Interactive Visualization</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
@@ -261,8 +261,6 @@
 </head>
 
 <body class="text-slate-200">
-
-    <!-- Navigation - sama persis dengan home -->
     <nav class="glass fixed top-0 left-0 right-0 z-50 fade-in border-b border-slate-700/50">
         <div class="max-w-7xl mx-auto px-4 md:px-6 py-4">
             <!-- Desktop Navbar -->
@@ -447,7 +445,7 @@
         </div>
     </div>
 
-    <!-- Footer - tetap sama -->
+    <!-- Footer -->
     <footer class="glass rounded-2xl p-8 mt-8 mx-4 md:mx-6">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-6">
@@ -583,7 +581,6 @@
     </footer>
 
     <script>
-        // Mobile menu toggle - sama persis dengan home
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
         const navOverlay = document.getElementById('nav-overlay');
@@ -609,17 +606,14 @@
             document.body.style.overflow = '';
         }
 
-        // Close menu ketika klik item menu (mobile)
         document.querySelectorAll('.mobile-menu-item').forEach(item => {
             item.addEventListener('click', closeMobileMenu);
         });
 
-        // Close dengan tombol Escape
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') closeMobileMenu();
         });
 
-        // Data kecamatan
         const dataPontianak = [
             { name: "Pontianak Utara", rt: 573, rw: 135, penduduk: 147064 },
             { name: "Pontianak Barat", rt: 561, rw: 105, penduduk: 156782 },
@@ -629,23 +623,18 @@
             { name: "Pontianak Tenggara", rt: 190, rw: 47, penduduk: 53100 }
         ];
 
-        // Hitung total
         const totals = dataPontianak.reduce((acc, d) => ({
             penduduk: acc.penduduk + d.penduduk,
             rw: acc.rw + d.rw,
             rt: acc.rt + d.rt
         }), { penduduk: 0, rw: 0, rt: 0 });
 
-        // Update stats
         document.getElementById('stat-penduduk').textContent = totals.penduduk.toLocaleString('id-ID');
         document.getElementById('stat-rw').textContent = totals.rw.toLocaleString('id-ID');
         document.getElementById('stat-rt').textContent = totals.rt.toLocaleString('id-ID');
 
-        // Chart.js config
         Chart.defaults.color = '#94a3b8';
         Chart.defaults.borderColor = 'rgba(148, 163, 184, 0.2)';
-
-        // Bar Chart RT
         const rtCtx = document.getElementById('rtChart').getContext('2d');
         new Chart(rtCtx, {
             type: 'bar',
@@ -671,7 +660,6 @@
             }
         });
 
-        // Doughnut Chart Penduduk
         const pendudukCtx = document.getElementById('pendudukChart').getContext('2d');
         new Chart(pendudukCtx, {
             type: 'doughnut',
@@ -707,7 +695,6 @@
             }
         });
 
-        // Populate table
         const tableBody = document.getElementById('tableBody');
         dataPontianak.forEach((d, i) => {
             const row = document.createElement('tr');
